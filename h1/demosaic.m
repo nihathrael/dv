@@ -53,9 +53,26 @@ for y=1:2:h         % Ab der 1 Zeilen jede 2. Zeile
     end
 end
 
+% Grün ungerade zeilen
 for y=1:2:h
+    for x=1:2:w
+        if x==1
+            g(y,x)=g(y,x+1);
+        elseif x==w
+            g(y,x)=g(y,x-1);
+        else
+            g(y,x)=(g(y,x-1)+g(y,x+1))/2;
+        end
+    end
+end
+% gründ gerade zeilen
+for y=2:2:h
     for x=2:2:w
-        % Add green here
+        if x==w
+            g(y,x)=g(y,x-1);
+        else
+            g(y,x)=(g(y,x-1)+g(y,x+1))/2;
+        end
     end
 end
 img=cat(3,r,g,b);
