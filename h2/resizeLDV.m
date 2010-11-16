@@ -10,7 +10,7 @@ newimg = zeros([tardim size(oldimg,3)]);
 
 for y=1:tardim(1)
     for x=1:tardim(2)
-        newimg(y,x,:) = intrplt(oldimg, y*size(oldimg,1)/tardim(1), ...
+        newimg(y,x,:) = intrpltval(oldimg, y*size(oldimg,1)/tardim(1), ...
             x*size(oldimg,2)/tardim(2) , intrpltalg);
     end
 end
