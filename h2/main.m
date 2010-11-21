@@ -14,16 +14,25 @@ imwrite(uint8(sb),'sb.bmp');
 imwrite(uint8(bb),'bb.bmp');
 
 disp('Chrominanz downscaling...');
-% chrominanz downscalen
 ds422 = ds444to422(img);
 imwrite(uint8(ds422),'ds422.bmp');
 ds420 = ds444to420(img);
 imwrite(uint8(ds420),'ds420.bmp');
 
 disp('Chrominanz upscaling...');
-% chrominanz upscalen
 us422 = us422to444(ds422);
 imwrite(uint8(us422), 'us422.bmp');
 us420 = us420to444(ds420);
 imwrite(uint8(us420), 'us420.bmp');
+
+disp('Transformationsmatrix parsen...');
+m = afftrafomatrix('theta-25');
+disp('Transformationsmatrix ist:');
+disp(m);
+
+disp('Affine Transformation anwenden...');
+imgtrafd = afftrafo(img, m, 'nearestneighbor');
+
+imwrite(uint8(imgtrafd), 'result.bmp');
+
 disp('Done!');
