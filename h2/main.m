@@ -2,11 +2,11 @@ disp('Loading image...');
 img = double(imread('test.jpg'));
 
 disp('Resizing...');
-% jeweils größer und kleiner und verschiedene interpolation
+% jeweils kleiner und größer und verschiedene interpolation
 sn = resizeLDV(img, [400 300], 'nearestneighbor');
-bn = resizeLDV(img, [1000 700], 'nearestneighbor');
+bn = resizeLDV(img, [3000 1500], 'nearestneighbor');
 sb = resizeLDV(img, [400 300], 'bilinear');
-bb = resizeLDV(img, [1000 700], 'bilinear');
+bb = resizeLDV(img, [3000 1500], 'bilinear');
 
 imwrite(uint8(sn),'sn.bmp');
 imwrite(uint8(bn),'bn.bmp');

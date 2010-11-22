@@ -16,9 +16,19 @@ function [ intrpltval ] = intrplt(img,y,x,intrplttalg)
         % Filtern einsetzen zu können
         n_x = x-floor(x);
         n_y = y-floor(y);
-        up_left     = img(floor(y), floor(x),:);
-        up_right    = img(floor(y), ceil(x),:);
-        down_left   = img(ceil(y),  floor(x),:);
+        
+        fy = floor(y);
+        if ( fy<1 )
+            fy = 1;
+        end
+        fx = floor(x);
+        if ( fx<1 )
+            fx = 1;
+        end
+        
+        up_left     = img(fy, fx,:);
+        up_right    = img(fy, ceil(x),:);
+        down_left   = img(ceil(y),  fx,:);
         down_right  = img(ceil(y),  ceil(x),:);
 
         intrpltval = up_left+(up_right-up_left)*n_x+(down_left-up_left)*n_y+(down_right-down_left-up_right+up_left)*n_y*n_x;
